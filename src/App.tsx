@@ -1,11 +1,22 @@
 import React, { Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import PrivateRoute from './routes/PrivateRoute';
 import Main from './app/main';
 import Dashboard from './app/dashboard';
 const Home = React.lazy(() => import('./pages/Home'));
 const Signin = React.lazy(() => import('./components/Login/Signin'));
 const Signup = React.lazy(() => import('./components/Login/Signup'));
 const Details = React.lazy(() => import('./pages/Details'));
+const Checkout = React.lazy(() => import('./pages/Checkout'));
+const DashboardHome = React.lazy(
+    () => import('./components/Dashboard/DashboardHome/DashboardHome')
+);
+const AddProducts = React.lazy(
+    () => import('./components/Dashboard/Products/AddProducts')
+);
+const Products = React.lazy(
+    () => import('./components/Dashboard/Products/Products')
+);
 
 function App() {
     return (
@@ -16,13 +27,43 @@ function App() {
                         <Route path="" element={<Home />} />
                         <Route path="home" element={<Home />} />
                         <Route path="details" element={<Details />} />
+                        <Route
+                            path="checkout"
+                            element={
+                                <PrivateRoute>
+                                    <Checkout />
+                                </PrivateRoute>
+                            }
+                        />
                         <Route path="signin" element={<Signin />} />
                         <Route path="signup" element={<Signup />} />
                         <Route path="*" element={<div>404</div>} />
                     </Route>
                     <Route path="/dashboard" element={<Dashboard />}>
-                        <Route path="" element={<Home />} />
-                        <Route path="home" element={<Home />} />
+                        <Route
+                            path=""
+                            element={
+                                <PrivateRoute>
+                                    <DashboardHome />
+                                </PrivateRoute>
+                            }
+                        />
+                        <Route
+                            path="manage-product"
+                            element={
+                                <PrivateRoute>
+                                    <Products />
+                                </PrivateRoute>
+                            }
+                        />
+                        <Route
+                            path="add-product"
+                            element={
+                                <PrivateRoute>
+                                    <AddProducts />
+                                </PrivateRoute>
+                            }
+                        />
                         <Route path="*" element={<div>404</div>} />
                     </Route>
                     <Route path="*" element={<div>404</div>} />

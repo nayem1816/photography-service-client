@@ -12,7 +12,7 @@ import logo from '../../asset/logo/logo.png';
 
 const LastFooter = () => {
     return (
-        <Footer className="container mx-auto shadow-none" container={true}>
+        <Footer className="container mx-auto shadow-0" container={true}>
             <div className="w-full">
                 <div className="grid w-full justify-between sm:flex sm:justify-between md:flex md:grid-cols-1">
                     <div>

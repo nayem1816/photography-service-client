@@ -1,11 +1,33 @@
-import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Outlet } from 'react-router-dom';
+import DashboardHeader from '../components/Dashboard/DashboardHeader/DashboardHeader';
+import Sidebar from '../components/Dashboard/Sidebar/Sidebar';
 
 const Dashboard = () => {
+    const [sidebarMenu, setSidebarMenu] = useState(false);
     return (
-        <Routes>
-            <Route path="/dashboard" element={<h2>Dashboard</h2>} />
-        </Routes>
+        <div style={{ height: '100vh' }} className="flex">
+            <div
+                className={`h-full ${
+                    sidebarMenu === false ? 'hidden' : 'block'
+                } lg:block`}
+            >
+                <Sidebar />
+            </div>
+            <div className="w-full">
+                <header className="py-5 flex px-3 bg-gray-50 dark:bg-gray-800 shadow-lg sticky top-0 z-50">
+                    <DashboardHeader
+                        sidebarMenu={sidebarMenu}
+                        setSidebarMenu={setSidebarMenu}
+                    />
+                </header>
+                <div className="container mx-auto body py-5 flex px-3 my-5 rounded w-full">
+                    <div className="w-full">
+                        <Outlet />
+                    </div>
+                </div>
+            </div>
+        </div>
     );
 };
 

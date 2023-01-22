@@ -5,6 +5,7 @@ import Dashboard from './app/dashboard';
 const Home = React.lazy(() => import('./pages/Home'));
 const Signin = React.lazy(() => import('./components/Login/Signin'));
 const Signup = React.lazy(() => import('./components/Login/Signup'));
+const Details = React.lazy(() => import('./pages/Details'));
 
 function App() {
     return (
@@ -14,6 +15,7 @@ function App() {
                     <Route path="/" element={<Main />}>
                         <Route path="" element={<Home />} />
                         <Route path="home" element={<Home />} />
+                        <Route path="details" element={<Details />} />
                         <Route path="signin" element={<Signin />} />
                         <Route path="signup" element={<Signup />} />
                         <Route path="*" element={<div>404</div>} />

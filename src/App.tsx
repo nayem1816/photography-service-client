@@ -29,9 +29,9 @@ function App() {
                     <Route path="/" element={<Main />}>
                         <Route path="" element={<Home />} />
                         <Route path="home" element={<Home />} />
-                        <Route path="details" element={<Details />} />
+                        <Route path="details/:id" element={<Details />} />
                         <Route
-                            path="checkout"
+                            path="checkout/:id"
                             element={
                                 <PrivateRoute>
                                     <Checkout />

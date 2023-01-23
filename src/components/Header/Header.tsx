@@ -4,10 +4,28 @@ import { Link } from 'react-router-dom';
 import auth from '../Login/firebase.init';
 import { useSignOut } from 'react-firebase-hooks/auth';
 import Logo from '../../asset/logo/logo.png';
+import { useEffect, useState } from 'react';
 
 const Header = () => {
     const [user, loading] = useAuthState(auth);
+    const [admin, setAdmin] = useState(false);
     const [signOut] = useSignOut(auth);
+
+    useEffect(() => {
+        fetch('http://localhost:5050/api/v1/is-admin', {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({ email: user?.email }),
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                if (data?.data?.email === user?.email) {
+                    setAdmin(true);
+                } else {
+                    setAdmin(false);
+                }
+            });
+    }, [user?.email]);
 
     if (loading) {
         return <p>Loading...</p>;
@@ -39,9 +57,11 @@ const Header = () => {
                                 {user.email}
                             </span>
                         </Dropdown.Header>
-                        <Link to="/dashboard">
-                            <Dropdown.Item>Dashboard</Dropdown.Item>
-                        </Link>
+                        {admin === true && (
+                            <Link to="/dashboard">
+                                <Dropdown.Item>Dashboard</Dropdown.Item>
+                            </Link>
+                        )}
                         <Dropdown.Item>My Orders</Dropdown.Item>
                         <Dropdown.Item>Profile</Dropdown.Item>
                         <Dropdown.Divider />

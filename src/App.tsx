@@ -5,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import PrivateRoute from './routes/PrivateRoute';
 import Main from './app/main';
 import Dashboard from './app/dashboard';
+import NotFound from './pages/NotFound';
 const Home = React.lazy(() => import('./pages/Home'));
 const Signin = React.lazy(() => import('./components/Login/Signin'));
 const Signup = React.lazy(() => import('./components/Login/Signup'));
@@ -50,7 +51,7 @@ function App() {
                         />
                         <Route path="signin" element={<Signin />} />
                         <Route path="signup" element={<Signup />} />
-                        <Route path="*" element={<div>404</div>} />
+                        <Route path="*" element={<NotFound />} />
                     </Route>
                     <Route path="/dashboard" element={<Dashboard />}>
                         <Route
@@ -93,9 +94,9 @@ function App() {
                                 </PrivateRoute>
                             }
                         />
-                        <Route path="*" element={<div>404</div>} />
+                        <Route path="*" element={<NotFound />} />
                     </Route>
-                    <Route path="*" element={<div>404</div>} />
+                    <Route path="*" element={<NotFound />} />
                 </Routes>
                 <ToastContainer />
             </Suspense>

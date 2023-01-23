@@ -42,8 +42,8 @@ const Header = () => {
                         <Link to="/dashboard">
                             <Dropdown.Item>Dashboard</Dropdown.Item>
                         </Link>
-                        <Dropdown.Item>Settings</Dropdown.Item>
-                        <Dropdown.Item>Earnings</Dropdown.Item>
+                        <Dropdown.Item>My Orders</Dropdown.Item>
+                        <Dropdown.Item>Profile</Dropdown.Item>
                         <Dropdown.Divider />
                         <Dropdown.Item
                             onClick={async () => {

@@ -1,5 +1,7 @@
 import React, { Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import PrivateRoute from './routes/PrivateRoute';
 import Main from './app/main';
 import Dashboard from './app/dashboard';
@@ -68,6 +70,7 @@ function App() {
                     </Route>
                     <Route path="*" element={<div>404</div>} />
                 </Routes>
+                <ToastContainer />
             </Suspense>
         </div>
     );

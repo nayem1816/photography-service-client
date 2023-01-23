@@ -19,6 +19,7 @@ const AddProducts = React.lazy(
 const Products = React.lazy(
     () => import('./components/Dashboard/Products/Products')
 );
+const Admin = React.lazy(() => import('./components/Dashboard/Admin/Admin'));
 
 function App() {
     return (
@@ -47,6 +48,14 @@ function App() {
                             element={
                                 <PrivateRoute>
                                     <DashboardHome />
+                                </PrivateRoute>
+                            }
+                        />
+                        <Route
+                            path="admin"
+                            element={
+                                <PrivateRoute>
+                                    <Admin />
                                 </PrivateRoute>
                             }
                         />

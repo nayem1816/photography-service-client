@@ -12,11 +12,14 @@ const Header = () => {
     const [signOut] = useSignOut(auth);
 
     useEffect(() => {
-        fetch('http://localhost:5050/api/v1/is-admin', {
-            method: 'POST',
-            headers: { 'content-type': 'application/json' },
-            body: JSON.stringify({ email: user?.email }),
-        })
+        fetch(
+            'https://photography-service-server-phi.vercel.app/api/v1/is-admin',
+            {
+                method: 'POST',
+                headers: { 'content-type': 'application/json' },
+                body: JSON.stringify({ email: user?.email }),
+            }
+        )
             .then((res) => res.json())
             .then((data) => {
                 if (data?.data?.email === user?.email) {

@@ -6,7 +6,6 @@ import GoogleLogin from './GoogleLogin';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from './firebase.init';
-import { toast } from 'react-toastify';
 import { useEffect } from 'react';
 
 type Inputs = {
@@ -20,7 +19,7 @@ const Signin = () => {
         handleSubmit,
         formState: { errors },
     } = useForm<Inputs>();
-    const [signInWithEmailAndPassword, user, error] =
+    const [signInWithEmailAndPassword, user] =
         useSignInWithEmailAndPassword(auth);
 
     const location = useLocation();
@@ -32,14 +31,6 @@ const Signin = () => {
             navigate(from, { replace: true });
         }
     }, [user, from, navigate]);
-
-    if (error) {
-        toast.error('The email address or password is incorrect', {
-            position: 'top-center',
-            autoClose: 1500,
-            hideProgressBar: false,
-        });
-    }
 
     const onSubmit: SubmitHandler<Inputs> = (data) => {
         signInWithEmailAndPassword(data.email, data.password);

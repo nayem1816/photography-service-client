@@ -18,13 +18,16 @@ const CreateAdmin = () => {
         const adminData = {
             email: data.email,
         };
-        fetch('http://localhost:5050/api/v1/add-admin', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(adminData),
-        })
+        fetch(
+            'https://photography-service-server-phi.vercel.app/api/v1/add-admin',
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(adminData),
+            }
+        )
             .then((res) => res.json())
             .then((data) => {
                 if (data) {

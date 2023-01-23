@@ -4,9 +4,12 @@ import { toast } from 'react-toastify';
 
 const SingleProduct = ({ product }: { product: any }) => {
     const handleDeleteBtn = (id: string) => {
-        fetch(`http://localhost:5050/api/v1/delete-product/${id}`, {
-            method: 'DELETE',
-        })
+        fetch(
+            `https://photography-service-server-phi.vercel.app/api/v1/delete-product/${id}`,
+            {
+                method: 'DELETE',
+            }
+        )
             .then((res) => res.json())
             .then((data) => {
                 if (data) {

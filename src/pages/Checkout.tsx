@@ -26,7 +26,9 @@ const Checkout = () => {
     } = useForm<Inputs>();
 
     React.useEffect(() => {
-        fetch(`http://localhost:5050/api/v1/get-product/${id}`)
+        fetch(
+            `https://photography-service-server-phi.vercel.app/api/v1/get-product/${id}`
+        )
             .then((res) => res.json())
             .then((data) => setProduct(data.data));
     }, [id]);
@@ -40,13 +42,16 @@ const Checkout = () => {
             city: data.city,
             product: product,
         };
-        fetch('http://localhost:5050/api/v1/add-checkout', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(checkoutData),
-        })
+        fetch(
+            'https://photography-service-server-phi.vercel.app/api/v1/add-checkout',
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(checkoutData),
+            }
+        )
             .then((res) => res.json())
             .then((data) => {
                 if (data) {

@@ -42,13 +42,16 @@ const AddProducts = () => {
             price: data.price,
             description: data.description,
         };
-        fetch('http://localhost:5050/api/v1/add-product', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(productData),
-        })
+        fetch(
+            'https://photography-service-server-phi.vercel.app/api/v1/add-product',
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(productData),
+            }
+        )
             .then((res) => res.json())
             .then((data) => {
                 if (data) {

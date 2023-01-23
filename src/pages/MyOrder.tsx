@@ -8,7 +8,9 @@ const MyOrder = () => {
     const [orders, setOrders] = React.useState([]);
 
     React.useEffect(() => {
-        fetch(`http://localhost:5050/api/v1/get-checkout/${user?.email}`)
+        fetch(
+            `https://photography-service-server-phi.vercel.app/api/v1/get-checkout/${user?.email}`
+        )
             .then((res) => res.json())
             .then((data) => {
                 console.log(data);

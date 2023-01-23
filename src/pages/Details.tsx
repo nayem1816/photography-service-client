@@ -6,7 +6,9 @@ const Details = () => {
     const [product, setProduct] = React.useState<any>({});
 
     React.useEffect(() => {
-        fetch(`http://localhost:5050/api/v1/get-product/${id}`)
+        fetch(
+            `https://photography-service-server-phi.vercel.app/api/v1/get-product/${id}`
+        )
             .then((res) => res.json())
             .then((data) => setProduct(data.data));
     }, [id]);

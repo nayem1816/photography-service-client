@@ -62,7 +62,9 @@ const Header = () => {
                                 <Dropdown.Item>Dashboard</Dropdown.Item>
                             </Link>
                         )}
-                        <Dropdown.Item>My Orders</Dropdown.Item>
+                        <Link to="/my-order">
+                            <Dropdown.Item>My Orders</Dropdown.Item>
+                        </Link>
                         <Dropdown.Item>Profile</Dropdown.Item>
                         <Dropdown.Divider />
                         <Dropdown.Item

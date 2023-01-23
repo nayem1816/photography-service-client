@@ -1,7 +1,9 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { toast } from 'react-toastify';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../components/Login/firebase.init';
 
 type Inputs = {
     name: string;
@@ -12,8 +14,10 @@ type Inputs = {
 };
 
 const Checkout = () => {
+    const [user]: any = useAuthState(auth);
     const { id } = useParams();
     const [product, setProduct] = React.useState<any>({});
+    const navigate = useNavigate();
     const {
         register,
         handleSubmit,
@@ -30,13 +34,12 @@ const Checkout = () => {
     const onSubmit: SubmitHandler<Inputs> = (data) => {
         const checkoutData = {
             name: data.name,
-            email: data.email,
+            email: user.email,
             phone: data.phone,
             address: data.address,
             city: data.city,
             product: product,
         };
-        console.log(checkoutData);
         fetch('http://localhost:5050/api/v1/add-checkout', {
             method: 'POST',
             headers: {
@@ -54,6 +57,7 @@ const Checkout = () => {
                         closeOnClick: true,
                     });
                     reset();
+                    navigate('/my-order');
                 }
             });
     };
@@ -101,16 +105,9 @@ const Checkout = () => {
                                                 type="text"
                                                 id="email"
                                                 className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
-                                                placeholder="email@domain.com"
-                                                {...register('email', {
-                                                    required: true,
-                                                })}
+                                                disabled
+                                                defaultValue={user?.email}
                                             />
-                                            {errors.email && (
-                                                <span className="text-red-600">
-                                                    This field is required
-                                                </span>
-                                            )}
                                         </div>
                                         <div className="md:col-span-5">
                                             <label htmlFor="phone">

@@ -21,6 +21,7 @@ const Products = React.lazy(
 );
 const Admin = React.lazy(() => import('./components/Dashboard/Admin/Admin'));
 const Order = React.lazy(() => import('./components/Dashboard/Order/Order'));
+const MyOrder = React.lazy(() => import('./pages/MyOrder'));
 
 function App() {
     return (
@@ -36,6 +37,14 @@ function App() {
                             element={
                                 <PrivateRoute>
                                     <Checkout />
+                                </PrivateRoute>
+                            }
+                        />
+                        <Route
+                            path="my-order"
+                            element={
+                                <PrivateRoute>
+                                    <MyOrder />
                                 </PrivateRoute>
                             }
                         />

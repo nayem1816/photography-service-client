@@ -20,6 +20,7 @@ const Products = React.lazy(
     () => import('./components/Dashboard/Products/Products')
 );
 const Admin = React.lazy(() => import('./components/Dashboard/Admin/Admin'));
+const Order = React.lazy(() => import('./components/Dashboard/Order/Order'));
 
 function App() {
     return (
@@ -72,6 +73,14 @@ function App() {
                             element={
                                 <PrivateRoute>
                                     <AddProducts />
+                                </PrivateRoute>
+                            }
+                        />
+                        <Route
+                            path="orders"
+                            element={
+                                <PrivateRoute>
+                                    <Order />
                                 </PrivateRoute>
                             }
                         />

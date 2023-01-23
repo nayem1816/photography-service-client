@@ -11,8 +11,6 @@ const Details = () => {
             .then((data) => setProduct(data.data));
     }, [id]);
 
-    console.log(product);
-
     return (
         <div className="container mx-auto my-5 md:my-10">
             <div className="shadow-lg rounded-lg">
@@ -34,7 +32,10 @@ const Details = () => {
                                     {product?.description}
                                 </p>
                             </div>
-                            <Link className="self-end" to="/checkout">
+                            <Link
+                                className="self-end"
+                                to={`/checkout/${product._id}`}
+                            >
                                 <button className="text-gray-900 bg-white border border-yellow-400 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium text-sm px-5 py-2.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 w-full rounded">
                                     Buy Now (${product?.price})
                                 </button>
